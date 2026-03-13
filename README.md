@@ -1,4 +1,4 @@
-# MTG Commander Recommender System
+# ManaCurve Analytics - A MTG Commander Recommender System
 
 This project explores the development of a recommendation system for Magic: The Gathering Commander decks. The goal is to analyze a user's decklist and suggest potential improvements, such as card upgrades within the 99 or possible commander alternatives that better align with the deck’s strategy.
 
