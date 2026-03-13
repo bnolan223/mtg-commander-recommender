@@ -13,7 +13,8 @@ The dataset includes information on card identity, mana value, colors, card type
 
 ## Project Structure
 
-notebooks/ – Exploratory data analysis and modeling notebooks  
+notebooks/ – Exploratory data analysis and modeling notebooks 
+reports/ - Contains pdf report files
 
 ## How to Run the Project
 
