@@ -1,53 +1,60 @@
 # ManaCurve Analytics - A MTG Commander Recommender System
 
-This project explores the development of a recommendation system for Magic: The Gathering Commander decks. The goal is to analyze a user's decklist and suggest potential improvements, such as card upgrades within the 99 or possible commander alternatives that better align with the deck’s strategy.
+This project develops a data-driven recommendation system for Magic: The Gathering Commander decks. The system analyzes a submitted decklist and suggests cards that improve the deck based on structural fit, color identity, mana curve alignment, and card co-occurrence patterns from real Commander decklists.
 
-The project focuses on intermediate Commander players who understand the basics of deck construction but may benefit from data-driven insights when refining their decks.
+The project targets intermediate Commander players who understand deck construction basics but want data-driven guidance when refining their 99.
 
 ## Data
 
-Card data for this project comes from the MTGJSON AllPrintings dataset:
+Three data sources are required to run the project. The raw data files are not stored in the repository due to size — download them and place them in the project root directory.
+
+**AllPrintings.json** — MTGJSON full card dataset
 https://mtgjson.com/downloads/all-files/#allprintings
 
-The dataset includes information on card identity, mana value, colors, card types, rarity, and rules text, which are used to analyze deck composition and support the recommendation pipeline.
+**AllDeckFiles/** — MTGJSON Commander preconstructed decklists (used for co-occurrence matrix and evaluation)
+https://mtgjson.com/downloads/all-files/#alldeckfiles
+
+**oracle-cards.json** — Scryfall bulk oracle card data (includes EDHREC rank per card)
+https://scryfall.com/docs/api/bulk-data
 
 ## Project Structure
 
-notebooks/ – Exploratory data analysis and modeling notebooks 
+```
+notebooks/    – EDA, feature engineering, and recommender system notebooks
+reports/      – Report files and presentations
+```
 
-reports/ - Contains report files
+## How to Run
 
-## How to Run the Project
+1. Download the three data files listed above and place them one level above the `notebooks/` directory (i.e. in the project root).
+2. Install dependencies: `pip install pandas numpy scikit-learn matplotlib seaborn`
+3. Run the notebooks in order:
+   - `01_eda.ipynb` – Basic metrics and exploratory data analysis
+   - `02_feature_engineering_analysis.ipynb` – Feature engineering and correlation analysis
+   - `03_recommender_system_final.ipynb` – Full recommender system, evaluation, and baseline comparison
 
-At the current stage of development, the repository contains exploratory data analysis notebooks used to understand the MTG card dataset.
+## Recommender System
 
-To reproduce the analysis:
+The recommender uses a hybrid approach:
 
-1. Download the **AllPrintings.json** dataset from MTGJSON:
-https://mtgjson.com/downloads/all-files/#allprintings
-
-2. Place the dataset locally (the raw dataset is not stored in the repository due to its size).
-
-3. Open the Jupyter notebooks located in the `notebooks/` directory.
-
-4. Run the notebooks sequentially to reproduce the exploratory data analysis and summary statistics.
-
-Future versions of this project will include the recommendation pipeline and a user facing interface for submitting decklists.
+- **Content-based similarity** — cosine similarity over a feature vector of card attributes (mana value, color identity, card types, rarity, power/toughness) and TF-IDF embeddings from card rules text
+- **Co-occurrence scoring** — cards that frequently appear together in real Commander precon decklists receive a higher score
+- **Color identity enforcement** — hard filter so only color-legal cards are recommended
+- **Evaluation** — reconstruction-based Hit Rate@K and Recall@K on held-out MTGJSON decks, Precision@K against deck ground truth, and comparison against a popularity baseline
 
 ## Current Progress
 
-- Data acquisition and preprocessing pipeline established
-- Basic metrics exploratory data analysis completed
-- GitHub repository created to support collaborative development
-- EDA Report completed
-- Status Presentation completed
+- Data acquisition and preprocessing pipeline complete
+- Exploratory data analysis and feature engineering complete
+- Hybrid content-based + co-occurrence recommender implemented
+- Reconstruction evaluation, Precision@K, and baseline comparison implemented
+- EDA report complete
+- Status presentation complete
 
 ## Team Members
 
 Group 1 – ManaCurve Analytics
 
 - Bennett Nolan
-- Jason Weinstein
 - Dominic Durning
 - Darryl Fields
-- Nate Moore
