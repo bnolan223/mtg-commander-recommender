@@ -228,3 +228,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 >>>>>>> d098edb511650a60ce14008098d65fb962944b0b
+AllPrintings.json
+oracle-cards.json
+AllDeckFiles/
