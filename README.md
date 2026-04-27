@@ -31,7 +31,7 @@ reports/      – Report files and presentations
 3. Run the notebooks in order:
    - `01_eda.ipynb` – Basic metrics and exploratory data analysis
    - `02_feature_engineering_analysis.ipynb` – Feature engineering and correlation analysis
-   - `03_recommender_system_final.ipynb` – Full recommender system, evaluation, and baseline comparison
+   - `03_recommender_system.ipynb` – Full recommender system, evaluation, and baseline comparison
 
 ## Recommender System
 
